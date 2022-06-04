@@ -98,3 +98,4 @@ int BST::depthTree(Node* root) {
 int BST::depth() {
     return depthTree(root);
 }
+#endif  // INCLUDE_BST_H_
