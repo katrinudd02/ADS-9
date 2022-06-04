@@ -3,13 +3,10 @@
 #define INCLUDE_BST_H_
 #include <string>
 #include <iostream>
-using namespace std;
 
 class BST
-{
-public:
-    struct Node
-    {
+{ public:
+    struct Node {
         string word;
         int count;
         Node* left;
@@ -31,27 +28,25 @@ public:
     int depth();
     void clear();
     void remove(int);
-    void balance();
 };
 BST::BST() {
     root=nullptr;
 }
 
 BST::~BST() {
-    if (root)
+    if(root)
         delTree(root);
 }
 
 struct BST::Node* BST::addNode(Node* root, string value) {
-    if (root == nullptr) {
+    if(root == nullptr) {
         root = new Node;
         root->count = 1;
-        root->height = 0;
         root->word = value;
         root->left = root->right = nullptr;
-    } else if (root->word > value) {
+    } else if(root->word > value) {
         root->left = addNode(root->left, value);
-    } else  if (root->word < value) {
+    } else  if(root->word < value) {
         root->right = addNode(root->right, value);
     } else {
         root->count++;
@@ -62,7 +57,6 @@ struct BST::Node* BST::addNode(Node* root, string value) {
 void BST::add(string value) {
     root = addNode(root, value);
 }
-
 
 void BST::printTree(Node* root) {
     if (root == nullptr)
@@ -78,7 +72,7 @@ void BST::print() {
 
 void BST::delTree(Node* root)
 {
-    if (root == nullptr)
+    if(root == nullptr)
         return;
     else {
         delTree(root->left);
@@ -89,7 +83,7 @@ void BST::delTree(Node* root)
 
 void BST::clear()
 {
-    if (root) {
+    if(root) {
         delTree(root);
         root = nullptr;
     }
@@ -97,7 +91,7 @@ void BST::clear()
 
 int BST::depthTree(Node* root)
 {
-    if (root) {
+    if(root) {
         return 1 + max(depthTree(root->left),depthTree(root->right));
     }
     return -1;
