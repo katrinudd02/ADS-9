@@ -3,10 +3,10 @@
 #define INCLUDE_BST_H_
 #include <string>
 #include <iostream>
+#include <algorithm>
 
-class BST
-{
-  public:
+class BST {
+ public:
     struct Node {
         std::string word;
         int count;
@@ -14,14 +14,14 @@ class BST
         Node* right;
     };
 
-  private:
+ private:
     Node* root;
     Node* addNode(Node*, std::string);
     void printTree(Node*);
     int depthTree(Node*);
     void delTree(Node*);
 
-  public:
+ public:
     BST();
     ~BST();
     void add(std::string);
@@ -72,9 +72,9 @@ void BST::print() {
 }
 
 void BST::delTree(Node* root) {
-    if (root == nullptr)
+    if (root == nullptr) {
         return;
-    else {
+    } else {
         delTree(root->left);
         delTree(root->right);
         delete root;
@@ -98,4 +98,3 @@ int BST::depthTree(Node* root) {
 int BST::depth() {
     return depthTree(root);
 }
-#endif  // INCLUDE_BST_H_
