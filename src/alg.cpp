@@ -1,13 +1,16 @@
 // Copyright 2021 NNTU-CS
 #define _CRT_SECURE_NO_WARNINGS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
+#include <iostream>
+#include <fstream>
+#include <locale>
+#include <cstdlib>
+#include "bst.h"
 #include <string>
 #include <cstring>
 #include <sstream>
+
+std::string lower(std::string word);
+bool checkWord(std::string word);
 
 BST makeTree(const char* filename) {
     std::string word, line;
@@ -19,7 +22,7 @@ BST makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file) {
         std::cout << "File error!" << std::endl;
-        return -1;
+        return mTree;
     }
 
     while (getline(file, line)) {
@@ -45,9 +48,9 @@ std::string lower(std::string word) {
     size_t len = word.length();
     int i;
     char ch;
-    for (i = 0; i < len; i++) {
+    for(i = 0; i < len; i++) {
         ch = word[i];
-        if (ch >= 'A' && ch <= 'Z')  word[i] = ch + 32;
+        if(ch >= 'A' && ch <= 'Z') word[i] = ch + 32;
     }
     return word;
 }
