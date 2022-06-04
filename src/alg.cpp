@@ -27,7 +27,7 @@ BST makeTree(const char* filename) {
 
     while (getline(file, line)) {
         buffer = new char[line.size() + 1];
-        std::copy(line.begin(), line.end(), buffer);
+        std::copy(line.begin(), line.end(), buffer, &buffer);
         buffer[line.size()] = '\0';
         pch = strtok_r(buffer, delim);
         while (pch != NULL) {
