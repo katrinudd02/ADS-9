@@ -4,10 +4,10 @@
 #include <fstream>
 #include <locale>
 #include <cstdlib>
-#include "bst.h"
 #include <string>
 #include <cstring>
 #include <sstream>
+#include "bst.h"
 
 std::string lower(std::string word);
 bool checkWord(std::string word);
@@ -29,14 +29,14 @@ BST makeTree(const char* filename) {
         buffer = new char[line.size() + 1];
         std::copy(line.begin(), line.end(), buffer);
         buffer[line.size()] = '\0';
-        pch = strtok(buffer, delim);
+        pch = strtok_r(buffer, delim);
         while (pch != NULL) {
             word = pch;
             word = lower(word);
             if (checkWord(word)) {
                 mTree.add(word);
             }
-            pch = strtok(NULL, delim);
+            pch = strtok_r(buffer, delim, &buffer);
         }
         delete[] buffer;
     }
@@ -48,9 +48,9 @@ std::string lower(std::string word) {
     size_t len = word.length();
     int i;
     char ch;
-    for(i = 0; i < len; i++) {
+    for (i = 0; i < len; i++) {
         ch = word[i];
-        if(ch >= 'A' && ch <= 'Z') word[i] = ch + 32;
+        if (ch >= 'A' && ch <= 'Z') word[i] = ch + 32;
     }
     return word;
 }
