@@ -90,7 +90,7 @@ void BST::clear() {
 
 int BST::depthTree(Node* root) {
     if (root) {
-        return 1 + max(depthTree(root->left), depthTree(root->right));
+        return 1 + std::max(depthTree(root->left), depthTree(root->right));
     }
     return -1;
 }
