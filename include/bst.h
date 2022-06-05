@@ -6,7 +6,7 @@
 #include <algorithm>
 
 class BST {
-public:
+ public:
     struct Node {
         std::string word;
         int count;
@@ -14,15 +14,15 @@ public:
         Node* right;
     };
 
-private:
+ private:
     Node* root;
     Node* addNode(Node*, std::string);
     void printTree(Node*);
     int depthTree(Node*);
     void delTree(Node*);
-    void copyTree(Node*,Node**);
+    void copyTree(Node*, Node**);
 
-public:
+ public:
     BST();
     BST(const BST&);
     ~BST();
@@ -64,7 +64,7 @@ void BST::copyTree(Node* src, Node** dst) {
         (*dst)->word = src->word;
         (*dst)->left = (*dst)->right = nullptr;
     }
-    copyTree(src->left,&((*dst)->left));
+    copyTree(src->left, &((*dst)->left));
     copyTree(src->right, &((*dst)->right));
 }
 
@@ -74,14 +74,11 @@ struct BST::Node* BST::addNode(Node* root, std::string value) {
         root->count = 1;
         root->word = value;
         root->left = root->right = nullptr;
-    }
-    else if (root->word > value) {
+    } else if (root->word > value) {
         root->left = addNode(root->left, value);
-    }
-    else  if (root->word < value) {
+    } else  if (root->word < value) {
         root->right = addNode(root->right, value);
-    }
-    else {
+    } else {
         root->count++;
     }
     return root;
@@ -106,8 +103,7 @@ void BST::print() {
 void BST::delTree(Node* root) {
     if (root == nullptr) {
         return;
-    }
-    else {
+    } else {
         delTree(root->left);
         delTree(root->right);
         delete root;
@@ -140,7 +136,6 @@ int BST::search(std::string word) {
         else p = p->right;
         if (p == NULL) break;
     }
-
     if (p) {
         return p->count;
     } else {
