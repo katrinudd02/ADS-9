@@ -17,6 +17,7 @@ BST<std::string> makeTree(const char* filename) {
     BST<std::string> mTree;
     char* pch;
     char* buffer;
+    char* save;
     const char* delim = " ,.-?!;()/[]:\'\"";
 
     std::ifstream file(filename);
@@ -29,14 +30,14 @@ BST<std::string> makeTree(const char* filename) {
         buffer = new char[line.size() + 1];
         std::copy(line.begin(), line.end(), buffer);
         buffer[line.size()] = '\0';
-        pch = strtok_r(buffer, delim, &buffer);
+        pch = strtok_r(buffer, delim, &save);
         while (pch != NULL) {
             word = pch;
             word = lower(word);
             if (checkWord(word)) {
                 mTree.add(word);
             }
-            pch = strtok_r(buffer, delim, &buffer);
+            pch = strtok_r(buffer, delim, &save);
         }
         delete[] buffer;
     }
