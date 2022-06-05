@@ -17,7 +17,7 @@ BST<std::string> makeTree(const char* filename) {
     BST<std::string> mTree;
     char* pch;
     char* buffer;
-    const char* delim = " ,.-?!;&*#()=+_`~@^$%№/[]:\'\"";
+    const char* delim = " ,.-?!;()/[]:\'\"";
 
     std::ifstream file(filename);
     if (!file) {
