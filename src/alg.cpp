@@ -31,13 +31,13 @@ BST<std::string> makeTree(const char* filename) {
         std::copy(line.begin(), line.end(), buffer);
         buffer[line.size()] = '\0';
         pch = strtok_r(buffer, delim, &save);
-        while (pch != NULL) {
+        while (pch != nullptr) {
             word = pch;
             word = lower(word);
             if (checkWord(word)) {
                 mTree.add(word);
             }
-            pch = strtok_r(buffer, delim, &save);
+            pch = strtok_r(nullptr, delim, &save);
         }
         delete[] buffer;
     }
