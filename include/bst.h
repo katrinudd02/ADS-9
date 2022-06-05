@@ -5,10 +5,11 @@
 #include <iostream>
 #include <algorithm>
 
+template < class T >
 class BST {
  public:
     struct Node {
-        std::string word;
+        T word;
         int count;
         Node* left;
         Node* right;
@@ -16,7 +17,7 @@ class BST {
 
  private:
     Node* root;
-    Node* addNode(Node*, std::string);
+    Node* addNode(Node*, T);
     void printTree(Node*);
     int depthTree(Node*);
     void delTree(Node*);
@@ -27,33 +28,39 @@ class BST {
     BST(const BST&);
     ~BST();
     BST& operator= (const BST&);
-    void add(std::string);
+    void add(T);
     void print();
     int depth();
     void clear();
     void remove(int);
-    int search(std::string);
+    int search(T);
 };
-BST::BST() {
+
+template < class T >
+BST<T>::BST() {
     root = nullptr;
 }
 
-BST::BST(const BST& srcTree) {
+template < class T >
+BST<T>::BST(const BST& srcTree) {
     root = nullptr;
     copyTree(srcTree.root, &root);
 }
 
-BST& BST::operator= (const BST& srcTree) {
+template < class T >
+BST<T>& BST<T>::operator= (const BST<T>& srcTree) {
     copyTree(srcTree.root, &root);
     return *this;
 }
 
-BST::~BST() {
+template < class T >
+BST<T>::~BST() {
     if (root)
         delTree(root);
 }
 
-void BST::copyTree(Node* src, Node** dst) {
+template < class T >
+void BST<T>::copyTree(Node* src, Node** dst) {
     if (src == nullptr) {
         *dst = nullptr;
         return;
@@ -68,7 +75,8 @@ void BST::copyTree(Node* src, Node** dst) {
     copyTree(src->right, &((*dst)->right));
 }
 
-struct BST::Node* BST::addNode(Node* root, std::string value) {
+template < class T >
+typename BST<T>::Node* BST<T>::addNode(Node* root, T value) {
     if (root == nullptr) {
         root = new Node;
         root->count = 1;
@@ -84,11 +92,13 @@ struct BST::Node* BST::addNode(Node* root, std::string value) {
     return root;
 }
 
-void BST::add(std::string value) {
+template < class T >
+void BST<T>::add(T value) {
     root = addNode(root, value);
 }
 
-void BST::printTree(Node* root) {
+template < class T >
+void BST<T>::printTree(Node* root) {
     if (root == nullptr)
         return;
     printTree(root->left);
@@ -96,11 +106,13 @@ void BST::printTree(Node* root) {
     printTree(root->right);
 }
 
-void BST::print() {
+template < class T >
+void BST<T>::print() {
     printTree(root);
 }
 
-void BST::delTree(Node* root) {
+template < class T >
+void BST<T>::delTree(Node* root) {
     if (root == nullptr) {
         return;
     } else {
@@ -110,25 +122,29 @@ void BST::delTree(Node* root) {
     }
 }
 
-void BST::clear() {
+template < class T >
+void BST<T>::clear() {
     if (root) {
         delTree(root);
         root = nullptr;
     }
 }
 
-int BST::depthTree(Node* root) {
+template < class T >
+int BST<T>::depthTree(Node* root) {
     if (root) {
         return 1 + std::max(depthTree(root->left), depthTree(root->right));
     }
     return -1;
 }
 
-int BST::depth() {
+template < class T >
+int BST<T>::depth() {
     return depthTree(root);
 }
 
-int BST::search(std::string word) {
+template < class T >
+int BST<T>::search(T word) {
     Node* p = root;
     if (!p) return 0;
     while (p->word != word) {
