@@ -142,7 +142,6 @@ template < class T >
 int BST<T>::depth() {
     return depthTree(root);
 }
-
 template < class T >
 int BST<T>::search(T word) {
     Node* p = root;
