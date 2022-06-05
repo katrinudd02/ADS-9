@@ -132,9 +132,14 @@ int BST::search(std::string word) {
     Node* p = root;
     if (!p) return 0;
     while (p->word != word) {
-        if (p->word > word) p = p->left;
-        else p = p->right;
-        if (p == NULL) break;
+        if (p->word > word) {
+            p = p->left;
+        } else {
+            p = p->right;
+        }
+        if (p == NULL) {
+            break;
+        }
     }
     if (p) {
         return p->count;
