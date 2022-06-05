@@ -12,9 +12,9 @@
 std::string lower(std::string word);
 bool checkWord(std::string word);
 
-BST makeTree(const char* filename) {
+BST<std::string> makeTree(const char* filename) {
     std::string word, line;
-    BST mTree;
+    BST<std::string> mTree;
     char* pch;
     char* buffer;
     const char* delim = " ,.-?!;&*#()=+_`~@^$%№/[]:\'\"";
